@@ -39,6 +39,15 @@ namespace LinqProject
 
             //ClassicLinqTest(products);
 
+            var result = from p in products
+                         join c in categories
+                         on p.CategoryId equals c.CategoryId
+                        select new ProductDto {  ProductId=p.ProductId, CategoryName=c.CategoryName , ProductName=p.ProductName , UnitPrice=p.UnitPrice };
+
+            foreach (var productDto in result)
+            {
+                Console.WriteLine( productDto.ProductName +"-"+productDto.CategoryName);
+            }
 
         }
 
